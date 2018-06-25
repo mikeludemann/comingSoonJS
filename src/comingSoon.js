@@ -7,6 +7,7 @@
             partingLine: true,
             date: "2018-06-23",
             time: "22:30:00",
+            afterText: "Expired",
             backgroundColor: "#000",
             backgroundImage: "",
             color: "#fff",
@@ -23,7 +24,21 @@
 
         }
 
-        content += '<div class="countdown"><div id="timer">X</div></div></div><div class="text-middle"><div>' + settings.context + '</div></div></div>';
+        if (settings.date != "" || settings.date != null) {
+
+            content += '<div class="countdown"><div id="timer">X</div></div>';
+
+        }
+
+        content += '</div>';
+
+        if (settings.context != "" || settings.context != null) {
+
+            content += '<div class="text-middle"><div>' + settings.context + '</div></div>';
+
+        }
+
+        content += '</div>';
 
         // Append Content in actual selector element
 
@@ -43,13 +58,13 @@
 
         // JavaScript Methods
 
-        countdown_timer("timer", settings.date, settings.time);
+        countdown_timer("timer", settings.date, settings.time, settings.afterText);
 
     };
 
 }(jQuery));
 
-function countdown_timer(element, date, time) {
+function countdown_timer(element, date, time, afterText) {
 
     'use strict';
 
@@ -100,7 +115,7 @@ function countdown_timer(element, date, time) {
 
             clearInterval(x);
 
-            elementExist.innerHTML = "EXPIRED";
+            elementExist.innerHTML = afterText;
 
         } else {
 
